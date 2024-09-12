@@ -6,6 +6,13 @@ const arrayDiaSemana = ["Domingo","Segunda-feira","Terça-feira","Quarta-feira",
 
 const dialogo = document.getElementById("Dialogo");
 
+navigator.geolocation.getCurrentPosition((position) => {
+    console.log(position);
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
+
+});
+
 const baterPonto = document.getElementById("btn-abre");
 baterPonto.addEventListener("click", function () {
     dialogo.showModal();
