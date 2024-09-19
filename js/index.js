@@ -12,16 +12,73 @@ navigator.geolocation.getCurrentPosition((position) => {
     console.log(position.coords.longitude);
 
 });
-
+let proxPonto = {"entrada":"intervalo", "intervalo":"volta-intervalo","volta-intervalo":"saida","saida":"entrada"};
 const baterPonto = document.getElementById("btn-abre");
 baterPonto.addEventListener("click", function () {
+
+  let dialogSelect = document.getElementById("select-tipos-ponto");
+
+
+    let ultimoPonto = localStorage.getItem("tipoUltimoPonto");
+    console.log(ultimoPonto);
+    dialogSelect.value = proxPonto[ultimoPonto];
     dialogo.showModal();
   });
+
+
   const fechar = document.getElementById("btn-fecha");
   fechar.addEventListener("click", function () {
     dialogo.close();
   });    
 
+    function recuperaPontosLocalStorage(){
+      let todososPontos = localStorage.getItem("registro");
+
+      if(todososPontos) {
+        return{};
+      }
+
+      return JSON.parse(todososPontos);
+    }
+
+
+
+    function salvarRegistroLocalStorage(ponto) {
+      let pontos = recuperaPontosLocalStorage
+    }
+
+    localStorage.setItem("chave-teste","valor-teste");
+
+    
+
+  const btnDialogoRegistrarPonto = document.getElementById("btn-dialog-registrar-ponto");
+  btnDialogoRegistrarPonto.addEventListener("click",() => {
+
+  
+
+
+    let data = dataCompleta();
+    let hora = horaCompleta();
+    let tipoPonto = document.getElementById("select-tipos-ponto").value;
+
+    let ponto = {
+        "data": data,
+        "hora": hora,
+        "tipo": tipoPonto,
+        "id": 1
+    }
+
+    localStorage.setItem("registro", JSON.stringify(ponto));
+    localStorage.setItem("tipoUltimoPonto", tipoPonto);
+
+    console.log(ponto);
+    dialogo.close();
+
+  });
+
+    function salvarRegisroLocalStorage(registro) {
+
+    }
 
 function diadaSemana(){
     const date = new Date();
